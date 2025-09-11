@@ -41,6 +41,7 @@ export function Pokemon({ name }: Props) {
   }, [name]);
 
   if (loading) return <h1>Cargando...</h1>;
+  if (error) return <h1>ERROR</h1>;
   if (!data) return <h1>No hay datos</h1>;
   return (
     <div className="bg-white w-full max-w-md shadow-xl text-center rounded-lg">
