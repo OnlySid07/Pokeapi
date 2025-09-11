@@ -1,0 +1,17 @@
+# Ignore log files
+*.log
+
+# Ignore build artifacts
+/build/
+target/
+.next
+# Ignore sensitive configuration files
+config.ini
+.env
+node_modules
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Exclude a specific file from being ignored
+!src/main.java
