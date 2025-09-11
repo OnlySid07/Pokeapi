@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function Home() {
   const [name, setName] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const handleSearch = () => {
     if (!name.trim()) return;
     setSelected(name.trim().toLowerCase());
@@ -27,11 +26,9 @@ export default function Home() {
 
         <button
           onClick={handleSearch}
-          className={`w-full max-w-md rounded-lg font-semibold py-2 px-4 bg-blue-600 text-white hover:bg-blue-700 transition ${
-            loading ? "bg-blue-500" : "bg-blue-600"
-          }  `}
+          className={`w-full max-w-md rounded-lg font-semibold py-2 px-4 bg-blue-600 text-white hover:bg-blue-700 transition  `}
         >
-          {loading ? "Cargando..." : "Buscar Pokemon"}
+          Buscar
         </button>
       </div>
 
