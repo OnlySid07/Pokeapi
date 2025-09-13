@@ -1,13 +1,17 @@
 "use client";
-import { Pokemon } from "@/components/Pokedex";
 import { useState } from "react";
+import { Card } from "@/components/Card";
+
 export default function Home() {
   const [name, setName] = useState("");
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState("");
+
   const handleSearch = () => {
-    if (!name.trim()) return;
-    setSelected(name.trim().toLowerCase());
+    if (!selected.trim()) return;
+    setName(selected.trim().toLowerCase());
+    setSelected("");
   };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-100 p-4">
       {/*TITULO*/}
@@ -20,7 +24,8 @@ export default function Home() {
           className="w-full text-center py-2 mb-4 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500  "
           type="text"
           placeholder="Nombre"
-          onChange={(e) => setName(e.target.value)}
+          value={selected}
+          onChange={(e) => setSelected(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
 
@@ -31,8 +36,15 @@ export default function Home() {
           Buscar
         </button>
       </div>
-
-      {selected && <Pokemon name={selected} />}
+      {!name ? (
+        <p className="bg-white rounded-lg w-full max-w-md text-center p-6">
+          Busca informacion de tu pokemon
+        </p>
+      ) : (
+        <div className="bg-white rounded-lg w-full max-w-md text-center">
+          {<Card name={name} />}
+        </div>
+      )}
     </main>
   );
 }
